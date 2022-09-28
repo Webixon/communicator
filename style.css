@@ -55,7 +55,7 @@
 
 #board {
     display: flex;   
-    width: 80%;
+    width: 90%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -64,6 +64,7 @@
 .msg{
     padding:5px 10px;
     display: flex;
+    width: 80%;
 }
 .name {
     font-weight: bold;
@@ -106,6 +107,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 5px;
+    cursor:default;
 }
 .voteBtn:first-child{
     border-radius: 5px 5px 0px 0px;

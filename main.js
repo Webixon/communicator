@@ -30,7 +30,7 @@ function newMsg () {
     let resp = document.createElement('div');
     resp.classList.add('msg')
     resp.classList.add('unread')
-    resp.textContent = textArea.value
+    resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100">${textArea.value}</span><a class='msgLink' href='#'>... read message</a></br><span class='timeAgo' style="font-weight: 100">1min ago</span>`
     board.append(resp)
     allMsg += 1; 
     notify.textContent = allMsg;  
