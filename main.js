@@ -7,6 +7,7 @@ let allMsg = null;
 let board = document.querySelector('#board')
 let textArea = document.querySelector('#textArea');
 let submit = document.querySelector('#submit')
+let upVote = document.getElementsByClassName('voteUp')
 
 function getAllMsg () {
     allMsg = document.querySelectorAll('.unread').length
@@ -37,8 +38,14 @@ function newMsg () {
 }
 }
 
+function upVoteScore () {
+    
+    let voteNum = document.querySelectorAll('.voteNum').value
+    
+    console.log(voteNum)
+    
+}
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
-
-
+upVote.addEventListener('click', upVoteScore)
