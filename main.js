@@ -55,8 +55,17 @@ function voting () {
 
 voting()
 
+function showReplay () {
+    let replayBtn = document.querySelectorAll('.replay');
+    let response = document.querySelectorAll('.response')
+    for (let i = 0; i < replayBtn.length; i++) {
+        replayBtn[i].onclick = function() {
+        response[i].classList.toggle('responseVisible')
+        }  
+         } 
+}
 
-
+showReplay()
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
