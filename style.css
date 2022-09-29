@@ -65,6 +65,9 @@
     padding:5px 10px;
     display: flex;
     width: 80%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 .name {
     font-weight: bold;
@@ -115,5 +118,17 @@
 }
 .voteBtn:last-child{
     border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
+}
+.options{
+    display: flex;
+    justify-content: flex-end;
+}
+.replay{
+    color:blue;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    padding: 3px;
     cursor: pointer;
 }

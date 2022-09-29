@@ -23,6 +23,7 @@ function clearNotifications () {
     notify.textContent = getAllMsg()
 }
 
+
 function newMsg () {    
     if(textArea.value == ""){
         return
@@ -39,7 +40,7 @@ function newMsg () {
 }
 
 
-function upVoteScore () {
+function voting () {
     let upVote = document.getElementsByClassName('voteUp')
     let downVote = document.getElementsByClassName('voteDown')
     for (let i = 0; i < upVote.length; i++) {
@@ -52,14 +53,11 @@ function upVoteScore () {
        } 
     }
 
-
-upVoteScore()
-
-
+voting()
 
 
 
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
-// upVote.addEventListener('click', upVoteScore)
+
