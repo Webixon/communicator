@@ -38,14 +38,28 @@ function newMsg () {
 }
 }
 
+
 function upVoteScore () {
-    
-    let voteNum = document.querySelectorAll('.voteNum').value
-    
-    console.log(voteNum)
-    
-}
+    let upVote = document.getElementsByClassName('voteUp')
+    let downVote = document.getElementsByClassName('voteDown')
+    for (let i = 0; i < upVote.length; i++) {
+      upVote[i].onclick = function() {
+        let div = this.nextElementSibling; 
+        div.textContent ++}
+      downVote[i].onclick = function() {
+        let div = this.previousElementSibling;
+        div.textContent --}  
+       } 
+    }
+
+
+upVoteScore()
+
+
+
+
+
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
-upVote.addEventListener('click', upVoteScore)
+// upVote.addEventListener('click', upVoteScore)
