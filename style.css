@@ -80,13 +80,13 @@
     cursor: pointer;
     background-color: var(--newMsgBackGroundColor);
 }
-#textArea{
+#textAreaMain, .textArea{
     display: flex;
     width:60%;
     height:100px;
     margin: 0 auto;
 }
-#submit{
+#submitMain, .submit{
     display: flex;
     margin:10px auto;
 }
@@ -113,13 +113,14 @@
     margin-right: 5px;
     cursor:default;
 }
-.voteBtn:first-child{
-    border-radius: 5px 5px 0px 0px;
+.voteBtn{
     cursor: pointer;
 }
-.voteBtn:last-child{
+.voteUp{
+    border-radius: 5px 5px 0px 0px;
+}
+.voteDown{
     border-radius: 0px 0px 5px 5px;
-    cursor: pointer;
 }
 .options{
     display: flex;
