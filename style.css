@@ -112,6 +112,7 @@
     align-items: center;
     margin-right: 5px;
     cursor:default;
+    width: 30px;
 }
 .voteBtn{
     cursor: pointer;

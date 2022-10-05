@@ -37,7 +37,11 @@ function createButtonOrTextArea (elementType, className, value, appendPlace ){
     appendPlace.append(element)
 }
 
+function getJson(file) {
+    
+}
 
+getJson('data.json')
 
 function newMsg() {
 
@@ -57,6 +61,10 @@ function newMsg() {
         <textarea class="textArea"></textarea><input type='submit' class='submit' value='submit'></input>
         </div>
         </div>`
+        // let votingArea = document.querySelector('.voting')
+        createVotingButtons(board, 'button', 'voteBtn', 'voteUp', '+')
+        createVotingButtons(board, 'div', 'voteBtn', 'voteNum', '0')
+        createVotingButtons(board, 'button', 'voteBtn', 'voteDown', '-')
         // createButtonOrTextArea('textArea', 'textArea', null, resp)
         createButtonOrTextArea('div', 'replay', 'replay', resp)
         allMsg += 1;
@@ -64,7 +72,7 @@ function newMsg() {
         textArea.value = " "
 
 
-
+        voting()
         showReplay()
 
         // displayVoting()
