@@ -37,11 +37,8 @@ function createButtonOrTextArea (elementType, className, value, appendPlace ){
     appendPlace.append(element)
 }
 
-function getJson(file) {
-    
-}
 
-getJson('data.json')
+
 
 function newMsg() {
 
@@ -49,22 +46,35 @@ function newMsg() {
         return
     } else {
         let resp = document.createElement('div');
-        let buttonContainer = document.createElement('div')
-        buttonContainer.classList.add('voting');
+        
+        board.append(resp)  
 
-        board.append(resp)
-        resp.append(buttonContainer)
 
+       
         resp.classList.add('msg', 'unread')
         resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100">${textArea.value}</span><a class='msgLink' href='#'>... read message</a></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
         <div class="response responseVisible">
         <textarea class="textArea"></textarea><input type='submit' class='submit' value='submit'></input>
         </div>
         </div>`
-        // let votingArea = document.querySelector('.voting')
-        createVotingButtons(board, 'button', 'voteBtn', 'voteUp', '+')
-        createVotingButtons(board, 'div', 'voteBtn', 'voteNum', '0')
-        createVotingButtons(board, 'button', 'voteBtn', 'voteDown', '-')
+
+
+        // let lastResp = document.querySelector('.unread')
+       
+        let buttonContainer = document.createElement('div')
+        buttonContainer.classList.add('voting');
+       
+
+        let votingArea = document.querySelector('#board').lastChild
+        let beforeSpanArea = votingArea.lastChild
+        votingArea.insertBefore(buttonContainer, beforeSpanArea)
+
+        console.log(votingArea)
+        console.log(buttonContainer)
+        console.log(beforeSpanArea)
+        createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteUp', '+')
+        createVotingButtons(buttonContainer, 'div', 'voteBtn', 'voteNum', '0')
+        createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteDown', '-')
         // createButtonOrTextArea('textArea', 'textArea', null, resp)
         createButtonOrTextArea('div', 'replay', 'replay', resp)
         allMsg += 1;
