@@ -37,13 +37,18 @@ function createButtonOrTextArea (elementType, className, value, appendPlace ){
     appendPlace.append(element)
 }
 
-function newMsg(msgText, inputPlace) {
+
+function newMsg(msgText, inputPlace = board) {
 
     if (textArea.value == "") {
         return
     } else {
-        let resp = document.createElement('div');       
-        board.append(resp)       // tu trzeba zrobic if'a czy na główny ekran odpowiedz czy konkretnie odpowiedz do innej  
+        let resp = document.createElement('div');  
+        
+        console.log(msgText)
+        console.log(inputPlace)
+        inputPlace.append(resp)       // tu trzeba zrobic if'a czy na główny ekran odpowiedz czy konkretnie odpowiedz do innej 
+ 
         resp.classList.add('msg', 'unread')
         resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100"> napisał: ${textArea.value}</span></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
         <div class="response responseVisible">
@@ -58,6 +63,7 @@ function newMsg(msgText, inputPlace) {
 
         let votingArea = document.querySelector('#board').lastChild
         let beforeSpanArea = votingArea.lastChild
+
         votingArea.insertBefore(buttonContainer, beforeSpanArea)
 
         createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteUp', '+')
@@ -109,8 +115,9 @@ function createReplay () {
     let allMsg = document.querySelectorAll('.msg')
     for (let i = 0; i < activeResponse.length; i++) {
         submitBtn[i].onclick = function () {
-            console.log(submitBtn[i])
-            console.log(activeResponse[i].value)
+            // console.log(submitBtn[i])
+            // console.log(activeResponse[i].value)
+            // console.log(allMsg[i])
             newMsg(activeResponse[i].value, allMsg[i])
             
         }
