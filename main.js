@@ -37,36 +37,24 @@ function createButtonOrTextArea (elementType, className, value, appendPlace ){
     appendPlace.append(element)
 }
 
-
-
-
-function newMsg() {
+function newMsg(msgText, inputPlace) {
 
     if (textArea.value == "") {
         return
     } else {
-        let resp = document.createElement('div');
-        
-        board.append(resp)  
-
-
-       
+        let resp = document.createElement('div');       
+        board.append(resp)       // tu trzeba zrobic if'a czy na główny ekran odpowiedz czy konkretnie odpowiedz do innej  
         resp.classList.add('msg', 'unread')
         resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100"> napisał: ${textArea.value}</span></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
         <div class="response responseVisible">
         <textarea class="textArea"></textarea><input type='submit' class='submit' value='submit'></input>
         </div>
         </div>`
-
-
-        // let lastResp = document.querySelector('.unread')
-       
+   
         let buttonContainer = document.createElement('div')
         let optionsArea = document.querySelectorAll('.options')
         let lastOptions = optionsArea[optionsArea.length-1]
         buttonContainer.classList.add('voting');
-       console.log(optionsArea)
-       console.log(lastOptions)
 
         let votingArea = document.querySelector('#board').lastChild
         let beforeSpanArea = votingArea.lastChild
@@ -75,20 +63,16 @@ function newMsg() {
         createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteUp', '+')
         createVotingButtons(buttonContainer, 'div', 'voteBtn', 'voteNum', '0')
         createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteDown', '-')
-        // createButtonOrTextArea('textArea', 'textArea', null, resp)
-        createButtonOrTextArea('div', 'replay', 'replay', lastOptions)
+        createButtonOrTextArea('div', 'replay', 'replay', lastOptions) // creating replay button
         allMsg += 1;
         notify.textContent = allMsg;
-        textArea.value = " "
-
-
+        textArea.value = " ";
         voting()
         showReplay()
-
-        // displayVoting()
-
     }
 }
+
+
 
 function voting() {
     let upVote = document.getElementsByClassName('voteUp')
@@ -113,8 +97,28 @@ function showReplay() {
     for (let i = 0; i < replayBtn.length; i++) {
         replayBtn[i].onclick = function () {
             response[i].classList.toggle('responseVisible')
+            response[i].classList.toggle('replayActive')
+            createReplay()
+            
         }
     }
+}
+function createReplay () {
+    let activeResponse = document.querySelectorAll('.textArea')
+    let submitBtn = document.querySelectorAll('.submit')
+    let allMsg = document.querySelectorAll('.msg')
+    for (let i = 0; i < activeResponse.length; i++) {
+        submitBtn[i].onclick = function () {
+            console.log(submitBtn[i])
+            console.log(activeResponse[i].value)
+            newMsg(activeResponse[i].value, allMsg[i])
+            
+        }
+    }
+
+
+
+    
 }
 
 
