@@ -64,13 +64,14 @@
 .msg{
     padding:5px 10px;
     display: flex;
-    width: 80%;
+    min-width: 89%;
     border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 10px;
 }
 .name {
     font-weight: bold;
+    min-width: 89%;
 }
 .unread{
     background-color: var(--newMsgBackGroundColor);
@@ -126,6 +127,7 @@
 .options{
     display: flex;
     justify-content: flex-end;
+    width: 100%;
 }
 .replay{
     color:blue;
@@ -138,3 +140,21 @@
 .responseVisible{
     display:none;
 }
+.response{
+    width:150%;
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    #section {
+        width: 100%;
+        height:90vh;
+    }
+    #top{
+        margin: 5px 5px 5px 5px;
+        width:100%;
+    }
+    #btn{
+        margin-right: 20px;
+    }
+  }

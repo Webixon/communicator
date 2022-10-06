@@ -52,7 +52,7 @@ function newMsg() {
 
        
         resp.classList.add('msg', 'unread')
-        resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100">${textArea.value}</span><a class='msgLink' href='#'>... read message</a></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
+        resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100"> napisał: ${textArea.value}</span></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
         <div class="response responseVisible">
         <textarea class="textArea"></textarea><input type='submit' class='submit' value='submit'></input>
         </div>
@@ -62,21 +62,21 @@ function newMsg() {
         // let lastResp = document.querySelector('.unread')
        
         let buttonContainer = document.createElement('div')
+        let optionsArea = document.querySelectorAll('.options')
+        let lastOptions = optionsArea[optionsArea.length-1]
         buttonContainer.classList.add('voting');
-       
+       console.log(optionsArea)
+       console.log(lastOptions)
 
         let votingArea = document.querySelector('#board').lastChild
         let beforeSpanArea = votingArea.lastChild
         votingArea.insertBefore(buttonContainer, beforeSpanArea)
 
-        console.log(votingArea)
-        console.log(buttonContainer)
-        console.log(beforeSpanArea)
         createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteUp', '+')
         createVotingButtons(buttonContainer, 'div', 'voteBtn', 'voteNum', '0')
         createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteDown', '-')
         // createButtonOrTextArea('textArea', 'textArea', null, resp)
-        createButtonOrTextArea('div', 'replay', 'replay', resp)
+        createButtonOrTextArea('div', 'replay', 'replay', lastOptions)
         allMsg += 1;
         notify.textContent = allMsg;
         textArea.value = " "
@@ -89,18 +89,6 @@ function newMsg() {
 
     }
 }
-// function displayVoting(){
-//     let boxForVoting = document.querySelector('#board')
-//     let voting = document.createElement('div').classList.add('voting')
-//     let voteUp = document.createElement('button').classList.add('voteBtn', 'voteUp')
-//     let voteScore = document.createElement('div')
-//     voteScore.classList.add('voteBtn', 'voteNum')
-//     voteScore.textContent="0"
-//     let voteDown = document.createElement('button').classList.add('voteBtn', 'voteDown')
-//     console.log(boxForVoting)
-//     boxForVoting.append(voteScore)
-
-// }
 
 function voting() {
     let upVote = document.getElementsByClassName('voteUp')
@@ -129,7 +117,7 @@ function showReplay() {
     }
 }
 
-showReplay()
+
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
