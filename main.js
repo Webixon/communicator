@@ -86,9 +86,6 @@ function newMsg(msgText, inputPlace = board) {
     }
 }
 
-
-
-
 function voting() {
     let upVote = document.getElementsByClassName('voteUp')
     let downVote = document.getElementsByClassName('voteDown')
