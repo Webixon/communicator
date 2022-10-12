@@ -68,6 +68,10 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.displayNone{
+    display:none;
 }
 .name {
     font-weight: bold;
@@ -75,6 +79,7 @@
 }
 .unread{
     background-color: var(--newMsgBackGroundColor);
+    border: 2px darkblue solid
 }
 
 .msgText:hover{

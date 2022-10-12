@@ -38,7 +38,7 @@ function createButtonOrTextArea (elementType, className, value, appendPlace ){
 }
 
 
-function newMsg(msgText, inputPlace = board) {
+function newMsg(msgText, inputPlace = board, classItem = null) {
 
     if (textArea.value == "") {
         return
@@ -111,15 +111,18 @@ function showReplay() {
 }
 function createReplay () {
     let activeResponse = document.querySelectorAll('.textArea')
+    let responseBox = document.querySelectorAll('.response')
     let submitBtn = document.querySelectorAll('.submit')
     let allMsg = document.querySelectorAll('.msg')
     for (let i = 0; i < activeResponse.length; i++) {
         submitBtn[i].onclick = function () {
+           responseBox[i].classList.remove('replayActive')
+           responseBox[i].classList.add('responseVisible')
+              
             // console.log(submitBtn[i])
             // console.log(activeResponse[i].value)
             // console.log(allMsg[i])
             newMsg(activeResponse[i].value, allMsg[i])
-            
         }
     }
 
