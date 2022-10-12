@@ -37,16 +37,27 @@ function createButtonOrTextArea (elementType, className, value, appendPlace ){
     appendPlace.append(element)
 }
 
+function placingVotingButtons (messages, spans) {
+    // console.log(buttons, place)
+    let buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('voting');
+    messages.insertBefore(buttonContainer,spans)
+    createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteUp', '+')
+    createVotingButtons(buttonContainer, 'div', 'voteBtn', 'voteNum', '0')
+    createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteDown', '-')
+    voting()
+}
 
-function newMsg(msgText, inputPlace = board, classItem = null) {
+function newMsg(msgText, inputPlace = board) {
 
     if (textArea.value == "") {
         return
     } else {
         let resp = document.createElement('div');  
-        
-        console.log(msgText)
-        console.log(inputPlace)
+
+        // console.log(msgText) --> to jest wazne
+
+        // console.log(inputPlace)
         inputPlace.append(resp)       // tu trzeba zrobic if'a czy na główny ekran odpowiedz czy konkretnie odpowiedz do innej 
  
         resp.classList.add('msg', 'unread')
@@ -55,28 +66,26 @@ function newMsg(msgText, inputPlace = board, classItem = null) {
         <textarea class="textArea"></textarea><input type='submit' class='submit' value='submit'></input>
         </div>
         </div>`
-   
-        let buttonContainer = document.createElement('div')
+        
         let optionsArea = document.querySelectorAll('.options')
         let lastOptions = optionsArea[optionsArea.length-1]
-        buttonContainer.classList.add('voting');
-
-        let votingArea = document.querySelector('#board').lastChild
-        let beforeSpanArea = votingArea.lastChild
-
-        votingArea.insertBefore(buttonContainer, beforeSpanArea)
-
-        createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteUp', '+')
-        createVotingButtons(buttonContainer, 'div', 'voteBtn', 'voteNum', '0')
-        createVotingButtons(buttonContainer, 'button', 'voteBtn', 'voteDown', '-')
+     
+        let lastM = document.querySelectorAll('.msg')
+        let lastMsg = lastM[lastM.length-1]
+        console.log(lastOptions)
         createButtonOrTextArea('div', 'replay', 'replay', lastOptions) // creating replay button
+        let allSpans = document.querySelectorAll('.name')
+        let lastSpan = allSpans[allSpans.length-1]
+        placingVotingButtons(lastMsg, lastSpan)
         allMsg += 1;
         notify.textContent = allMsg;
         textArea.value = " ";
         voting()
         showReplay()
+        
     }
 }
+
 
 
 
@@ -114,24 +123,19 @@ function createReplay () {
     let responseBox = document.querySelectorAll('.response')
     let submitBtn = document.querySelectorAll('.submit')
     let allMsg = document.querySelectorAll('.msg')
+
     for (let i = 0; i < activeResponse.length; i++) {
         submitBtn[i].onclick = function () {
            responseBox[i].classList.remove('replayActive')
            responseBox[i].classList.add('responseVisible')
-              
-            // console.log(submitBtn[i])
-            // console.log(activeResponse[i].value)
-            // console.log(allMsg[i])
             newMsg(activeResponse[i].value, allMsg[i])
+            let allSpans = document.querySelectorAll('.name')
+
+            placingVotingButtons(allMsg[i], allSpans[i])
         }
     }
 
-
-
-    
 }
-
-
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
