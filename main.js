@@ -55,15 +55,15 @@ function newMsg(msgText, inputPlace = board) {
     } else {
         let resp = document.createElement('div');  
 
-        // console.log(msgText) --> to jest wazne
+        console.log(msgText) 
 
         // console.log(inputPlace)
         inputPlace.append(resp)       // tu trzeba zrobic if'a czy na główny ekran odpowiedz czy konkretnie odpowiedz do innej 
  
         resp.classList.add('msg', 'unread')
-        resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100"> napisał: ${textArea.value}</span></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
+        resp.innerHTML = `<span class="name">Tomek Sośniewski</ span> <span style="font-weight: 100"> napisał:  ${msgText}</span></br><span class='timeAgo' style="font-weight: 100">1min ago</span><div class='options'>      
         <div class="response responseVisible">
-        <textarea class="textArea"></textarea><input type='submit' class='submit' value='submit'></input>
+        <textarea class="textArea"></textarea><input type='submit' class='submit newSubmit' value='submit'></input>
         </div>
         </div>`
         
@@ -72,8 +72,9 @@ function newMsg(msgText, inputPlace = board) {
      
         let lastM = document.querySelectorAll('.msg')
         let lastMsg = lastM[lastM.length-1]
-        console.log(lastOptions)
-        createButtonOrTextArea('div', 'replay', 'replay', lastOptions) // creating replay button
+        createButtonOrTextArea('div', 'replay', 'replay', lastOptions) // creating replay btn button
+       
+
         let allSpans = document.querySelectorAll('.name')
         let lastSpan = allSpans[allSpans.length-1]
         placingVotingButtons(lastMsg, lastSpan)
@@ -118,21 +119,28 @@ function showReplay() {
 function createReplay () {
     let activeResponse = document.querySelectorAll('.textArea')
     let responseBox = document.querySelectorAll('.response')
-    let submitBtn = document.querySelectorAll('.submit')
+    let submitBtn = document.querySelectorAll('.newSubmit')
     let allMsg = document.querySelectorAll('.msg')
-
+    let i = 0
     for (let i = 0; i < activeResponse.length; i++) {
         submitBtn[i].onclick = function () {
            responseBox[i].classList.remove('replayActive')
            responseBox[i].classList.add('responseVisible')
             newMsg(activeResponse[i].value, allMsg[i])
             let allSpans = document.querySelectorAll('.name')
-
-            placingVotingButtons(allMsg[i], allSpans[i])
+            console.log(allSpans[i])
+            placingVotingButtons(allMsg[i], allSpans[i].lastChild)
+           
         }
+        
+        
     }
 
+
+         
+
 }
+
 
 submit.addEventListener('click', newMsg)
 btn.addEventListener('click', clearNotifications)
